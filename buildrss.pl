@@ -6,14 +6,15 @@ use strict;
 use warnings;
 use POSIX qw(strftime locale_h);
 
-die "Usage:\n\t$0 title description url *.mp3 > file.rss\n" if @ARGV < 4;
+die "Usage:\n\t$0 title 'a description' url *.mp3 > file.rss\n" if @ARGV < 4;
 
 my $title       = shift @ARGV;
 my $description = shift @ARGV;
 my $url         = shift @ARGV;
+$url .= "/" unless $url =~ /\/$/;
 
 setlocale(LC_TIME, "C"); # RFC822 timestamp must be in C locale
-my $todaydate =  strftime("%a, %d %b %Y %H:%M:%S %z", localtime());
+my $now =  strftime("%a, %d %b %Y %H:%M:%S %z", localtime());
 
 print <<__EOF;
 <?xml version="1.0" encoding="UTF-8"?>
@@ -23,8 +24,8 @@ print <<__EOF;
 		<description>$description</description>
 		<link>$url</link>
 		<atom:link href="$url$title.rss" rel="self" type="application/rss+xml" />
-		<pubDate>$todaydate</pubDate>
-		<lastBuildDate>$todaydate</lastBuildDate>
+		<pubDate>$now</pubDate>
+		<lastBuildDate>$now</lastBuildDate>
 __EOF
 
 while(@ARGV) { # go through all filenames
