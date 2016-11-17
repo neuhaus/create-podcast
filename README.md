@@ -17,11 +17,11 @@ Inspired by https://github.com/silverwizard/Podcast-Create
 
     3. URL
 
-    4. *.mp3
+    4. `*.mp3` (or a list of mp3 files)
 
 
 Redirect its output into a file.
 
 Example:
 
-    `buildrss.pl Test5 "This is my fifth test" https://example.com/test5/ *.mp3 > test5.rss`
+    buildrss.pl Test5 "This is my fifth test" https://example.com/test5/ *.mp3 > test5.rss
