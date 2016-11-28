@@ -5,6 +5,7 @@
 use strict;
 use warnings;
 use POSIX qw(strftime locale_h);
+use URI::Escape;
 
 die "Usage:\n\t$0 title 'a description' url *.mp3 > file.rss\n" if @ARGV < 4;
 
@@ -31,14 +32,15 @@ __EOF
 while(@ARGV) { # go through all filenames
 	my $file = shift @ARGV;
 	my $length = -s $file;
+	my $uri = uri_escape_utf8($file);
 	# TODO should use MP3::Info for mp3 file description/title
 	print <<__EOF;
 			<item>
 				<title>$file</title>
 				<description>$file</description>
-				<link>$url$file</link>
-				<guid>$url$file</guid>
-				<enclosure url="$url$file" length="$length" type="audio/mpeg" />
+				<link>$url$uri</link>
+				<guid>$url$uri</guid>
+				<enclosure url="$url$uri" length="$length" type="audio/mpeg" />
 			</item>
 __EOF
 }
