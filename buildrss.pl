@@ -35,13 +35,13 @@ while(@ARGV) { # go through all filenames
 	my $uri = uri_escape_utf8($file);
 	# TODO should use MP3::Info for mp3 file description/title
 	print <<__EOF;
-			<item>
-				<title>$file</title>
-				<description>$file</description>
-				<link>$url$uri</link>
-				<guid>$url$uri</guid>
-				<enclosure url="$url$uri" length="$length" type="audio/mpeg" />
-			</item>
+		<item>
+			<title>$file</title>
+			<description>$file</description>
+			<link>$url$uri</link>
+			<guid>$url$uri</guid>
+			<enclosure url="$url$uri" length="$length" type="audio/mpeg" />
+		</item>
 __EOF
 }
 print <<__EOF;
