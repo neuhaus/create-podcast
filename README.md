@@ -2,6 +2,7 @@
 
 This little perl script creates a podcast.
 It generates a RSS file with audio files and only relies on modules shipped as part of perl core.
+The script requires the MP3::Info perl module to be installed.
 
 Inspired by https://github.com/silverwizard/Podcast-Create
 
