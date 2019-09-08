@@ -23,6 +23,11 @@ Inspired by https://github.com/silverwizard/Podcast-Create
 
 Redirect the script output into a file and you're done.
 
+*Note:* Some Podcast clients sort the entries by date. If your MP3 files are not sorted by date, you can use 
+the following command to give them ascending timestamps:
+
+    perl -e '$x=time; for(@ARGV){utime($x,$x++, $_)}' *.mp3
+
 Examples:
 
     buildrss.pl Test5 "This is my fifth test" https://example.com/test5/ *.mp3 > test5.rss
